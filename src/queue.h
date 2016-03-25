@@ -69,7 +69,8 @@ typedef struct queue_handle {
 		pthread_mutex_lock(&qc->mutex);										\
 		while (QUEUE_SIZE(q) == 0) {										\
 			pthread_cond_wait(&qc->cond, &qc->mutex);						\
-		}																	\
+		}
+		这里就用了条件变量进行等待队列有数据\
 		if ((q)->qh.qc->front != NULL) {									\
 			(e) = (q)->qh.qc->front;										\
 			(q)->qh.qc->front = (e)->qh.next;								\
